@@ -187,153 +187,42 @@ body[data-lang="en"] [data-lang-it] { display: none; }
 body[data-lang="it"] [data-lang-en] { display: none; }
 
 /* ===== HERO ================================================= */
-.hero {
-  height: 100vh; min-height: 700px;
-  position: relative; overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-  text-align: center;
-  padding: 6rem 1.5rem 3rem;
-}
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-video"></div>
 
-.hero-video {
-  position: absolute; inset: 0; z-index: 0;
-  background: var(--ink);
-}
-.hero-video {
-  position: absolute; 
-  inset: 0; 
-  z-index: 0;
-  background-image: url("hero_image.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-/* fallback */
-.hero-video::before {
-  content:""; position:absolute; inset:0; z-index:-1;
-  background:
-    radial-gradient(ellipse at 50% 30%, rgba(209,138,42,0.18), transparent 60%),
-    radial-gradient(ellipse at 50% 80%, rgba(177,74,42,0.15), transparent 65%),
-    var(--ink-2);
-}
-.hero-video::after {
-  content:""; position:absolute; inset:0;
-  background: linear-gradient(180deg, rgba(13,13,11,0.5) 0%, rgba(13,13,11,0.20) 35%, rgba(13,13,11,0.85) 100%);
-}
+  <div class="hero-coords">
+    <strong>41°07′ N · 16°52′ E</strong> &nbsp;·&nbsp; Bari · Apulia · Italy
+  </div>
 
-.hero-content {
-  position: relative; z-index: 2;
-  max-width: 980px; width: 100%;
-}
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <img src="logo_seal.png" alt="" />
+      <span class="eyebrow" data-lang-en>Antonio Caso, geographer</span>
+      <span class="eyebrow" data-lang-it>Antonio Caso, geografo</span>
+    </div>
 
-.hero-eyebrow {
-  margin-bottom: 3rem;
-  display: flex; flex-direction: column; align-items: center; gap: 1rem;
-}
-.hero-eyebrow img {
-  height: 56px; width: auto; opacity: 0.95;
-}
+    <h1 data-lang-en>I read places.<br/>I turn them into <em>stories</em>.</h1>
+    <h1 data-lang-it>Leggo i luoghi.<br/>Ne faccio <em>racconti</em>.</h1>
 
-.hero h1 {
-  font-family: var(--display);
-  font-weight: 300;
-  font-size: clamp(2.6rem, 6.5vw, 5.6rem);
-  line-height: 1.05;
-  color: var(--bone);
-  letter-spacing: -0.02em;
-  margin-bottom: 2rem;
-}
-.hero h1 em {
-  font-style: italic;
-  font-weight: 300;
-  color: var(--bone);
-}
+    <p class="hero-tagline" data-lang-en>A geographer's atlas of single-origin terroirs — climate, soil, history, cultivations, traditions — turned into the editorial language brands and territories use to communicate identity at the highest level.</p>
+    <p class="hero-tagline" data-lang-it>L'atlante di un geografo dei terroir single-origin — clima, suolo, storia, colture, tradizioni — tradotto nel linguaggio editoriale che brand e territori usano per comunicare la propria identità ai livelli più alti.</p>
+  </div>
 
-.hero-tagline {
-  font-family: var(--display);
-  font-weight: 300;
-  font-style: italic;
-  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
-  line-height: 1.5;
-  color: var(--bone-soft);
-  max-width: 56ch;
-  margin: 0 auto;
-  letter-spacing: 0;
-}
+  <div class="hero-bottom">
+    <button class="audio-toggle" id="audioToggle" type="button">
+      <span class="dot"></span>
+      <span data-lang-en>Sound</span>
+      <span data-lang-it>Audio</span>
+    </button>
+    <audio id="ambientAudio" loop preload="none">
+      <source src="ambient.mp3" type="audio/mpeg" />
+    </audio>
 
-.hero-coords {
-  position: absolute; top: 50%; left: clamp(1.5rem, 4vw, 3rem);
-  transform: translateY(-50%);
-  z-index: 3;
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--bone-mute);
-  line-height: 2;
-  writing-mode: vertical-rl;
-  display: none;
-}
-@media (min-width: 1100px) { .hero-coords { display: block; } }
-.hero-coords strong { color: var(--terra); font-weight: 400; }
-
-.hero-bottom {
-  position: absolute; bottom: 2rem; left: 0; right: 0;
-  z-index: 3;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 0 clamp(1.5rem, 4vw, 3rem);
-}
-
-.audio-toggle {
-  display: inline-flex; align-items: center; gap: 0.55rem;
-  padding: 0.55rem 0.9rem;
-  background: rgba(13, 13, 11, 0.5);
-  border: 1px solid var(--rule-strong);
-  cursor: pointer;
-  color: var(--bone-soft);
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  transition: all 0.25s ease;
-  backdrop-filter: blur(8px);
-}
-.audio-toggle:hover { color: var(--bone); border-color: var(--bone-soft); }
-.audio-toggle.on { color: var(--terra); border-color: var(--terra); }
-.audio-toggle .dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: currentColor;
-  transition: all 0.3s ease;
-}
-.audio-toggle.on .dot { animation: pulse 1.5s ease-in-out infinite; }
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.8); }
-}
-
-.scroll-cue {
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--bone-mute);
-  display: flex; align-items: center; gap: 0.7rem;
-}
-.scroll-cue::after {
-  content:""; display:block; width: 28px; height: 1px;
-  background: var(--bone-soft);
-  animation: slide 2.4s ease-in-out infinite;
-}
-@keyframes slide {
-  0%, 100% { transform: scaleX(0.3); transform-origin: left; }
-  50%      { transform: scaleX(1);   transform-origin: left; }
-}
-
-/* ===== SECTION BASE ========================================= */
-section { padding: clamp(7rem, 13vw, 12rem) clamp(1.5rem, 5vw, 4rem); position: relative; }
-.container { max-width: 1280px; margin: 0 auto; }
-.narrow { max-width: 720px; margin: 0 auto; }
-.text-center { text-align: center; }
+    <div class="scroll-cue" data-lang-en>Scroll</div>
+    <div class="scroll-cue" data-lang-it>Scorri</div>
+  </div>
+</section>
 
 /* ===== STORY (manifesto) ==================================== */
 .story {
